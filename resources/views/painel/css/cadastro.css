@@ -1,0 +1,52 @@
+.input-box ::placeholder {
+    text-align: left;
+}
+
+.wrapper-container {
+    width: 75%;
+    margin: 60px auto
+}
+
+.input-box input, textarea, select {
+    width: 100%;
+    padding: 0.8rem 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 3%;
+    margin-top: 1%;
+    box-shadow: 2px 2px 12px #0000001c;
+    outline-color: #2F9E41;
+    border: 1px solid #000;
+}
+
+.input-box input[type="checkbox"]{
+    width: auto;
+}
+
+.input-box .flex-container {
+    gap: 30px;
+}
+
+.input-box .input-form {
+    width: 50%;
+}
+
+.button.flex-container {
+    justify-content: space-between
+}
+
+.btn {
+    border: none;
+    border-radius: 5px;
+    background: #2F9E41;
+    color: rgb(255, 253, 253);
+    text-align: center;
+    padding: 16px 35px
+}
+
+.btn.red {
+    background-color: #f53545;
+}
+
+.form h1 {
+    margin-bottom: 50px
+}
