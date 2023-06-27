@@ -5,6 +5,7 @@ use App\Http\Controllers\DisciplinaController;
 use App\Http\Controllers\ProfessoresController;
 use App\Http\Controllers\TurmasController;
 use App\Http\Controllers\AlunosTurmasController;
+use App\Http\Controllers\AmbientesController;
 use App\Http\Controllers\NotasController;
 use App\Http\Controllers\Painel;
 use Illuminate\Support\Facades\Route;
@@ -55,16 +56,19 @@ Route::get('/disciplina/adicionar', function(){
 })->middleware('admin');
 
 
-//Professes
-Route::get('/professor', [ProfessoresController::class, 'index'])->middleware('auth');
-Route::post('/adicionar-professor', [ProfessoresController::class, 'store'])->middleware('admin');
-Route::get('/professor/edit/{id}', [ProfessoresController::class, 'edit'])->middleware('admin');
-Route::put('/professor/update/{id}', [ProfessoresController::class, 'update'])->middleware('admin');
-Route::delete('/professor/{id}', [ProfessoresController::class, 'destroy'])->middleware('admin');
+//Ambientes
+Route::get('/ambientes', [AmbientesController::class, 'index'])->middleware('auth')->name('ambientes.index');
+Route::post('/adicionar-ambiente', [AmbientesController::class, 'store'])->middleware('admin');
+Route::get('/ambiente/edit/{id}', [AmbientesController::class, 'edit'])->middleware('admin')->name('ambientes.edit');
+Route::put('/ambiente/update/{id}', [AmbientesController::class, 'update'])->middleware('admin')->name('ambientes.update');;
+Route::delete('/ambiente/{id}', [AmbientesController::class, 'destroy'])->middleware('admin');
 
 
-Route::get('/adicionar-professor', function(){
-    return view('painel.addProfessor');
+
+
+
+Route::get('/ambiente/edit', function(){
+    return view('painel.ambiente.edit');
 })->middleware('admin');
 
 

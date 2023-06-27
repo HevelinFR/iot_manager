@@ -18,16 +18,7 @@
         </div>
         <div class="iems-menu">
             <ul>
-                @if(Auth::user()->permissao <=1)
-                    <li><a href="/alunos">Alunos</a></li>
-                    <li><a href="/professor">Professor</a></li>
-                    <li><a href="/turmas">Turma</a></li>
-                    <li><a href="/disciplina">Disciplina</a></li>
-                    <li><a href="/matricula">Matricula</a></li>
-                @endif
-                @if(Auth::user()->permissao ==2)
-                    <li><a href="/boletim">Boletim</a></li>
-                @endif
+                <li><a href="/ambientes">Ambientes</a></li>
 
             </ul>
         </div>

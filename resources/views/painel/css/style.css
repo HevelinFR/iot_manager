@@ -197,3 +197,7 @@ th {
 .wrapper-container td a {
     margin-right: 15px;
 }
+
+.form{
+    display: block;
+}

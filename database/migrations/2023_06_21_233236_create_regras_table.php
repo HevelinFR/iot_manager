@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDisciplinaTable extends Migration
+class CreateRegrasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreateDisciplinaTable extends Migration
      */
     public function up()
     {
-        Schema::create('disciplinas', function (Blueprint $table) {
+        Schema::create('regras', function (Blueprint $table) {
             $table->id();
-            $table->string('cod_disciplina');
-            $table->string('nome');
-            $table->integer('semestre');
-            $table->string('ementa');
+            $table->string('valor');
+            $table->unsignedBigInteger('id_comparacao')->constraind();
             $table->timestamps();
-
         });
     }
 
@@ -31,6 +28,6 @@ class CreateDisciplinaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('disciplinas');
+        Schema::dropIfExists('regras');
     }
 }
