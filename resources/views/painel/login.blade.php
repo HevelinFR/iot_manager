@@ -4,31 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url(mix('painel/css/bootstrap.css'))}}">
+    <link rel="stylesheet" href="{{url(mix('painel/css/style.css'))}}">
     <title>Login</title>
 </head>
 <body>
   <div class="login">
-
-    <div class="esquerda">
-        <h1>Ciências da Computação</h1>
-        <img src="{{url('painel/img/img1.png')}}" alt="Login">
-    </div>
-
-    <div class="direita">
+    <div class="container">
+        <img class="mb-3" src="{{url('painel/img/logo.png')}}" alt="Login">
          <!-- Validation Errors -->
          <x-auth-validation-errors class="mb-4" :errors="$errors" />
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login') }}" class="col-lg-6">
             @csrf
-            <h1>Faça Seu Login</h1>
-            <div>
+            <h3 class="text">Faça Seu Login</h3>
+            <div class="form-group py-3 m-0">
                 <label for="ususrio">Email</label><br>
-                <input type="text" name="email">
+                <input type="text" name="email" class="form-control">
             </div>
-            <div>
+            <div class="form-group py-3">
                 <label for="senha">Senha</label><br>
-                <input type="password" name="password">
+                <input type="password" name="password" class="form-control">
             </div>
-            <button type="submit">Entrar</button>
+            <button type="submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3">Entrar</button>
+            <a href="/register">Cadastre-se</a>
         </form>
     </div>
 </div>

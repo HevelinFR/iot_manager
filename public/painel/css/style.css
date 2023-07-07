@@ -143,19 +143,16 @@ div.box-usuario {
 }
 
 .wrapper-header.flex-container input {
-    background: #DAE1EC;
-    border: none;
+    background: #fff;
     border-radius: 8px;
-    padding: 16px;
-    width: 40%;
+    padding: 10px;
+    width: 58%;
 }
 
 .btn {
     display: flex;
-    background: #0A65FF;
-    color: #fff;
     border: none;
-    padding: 10px;
+    padding: 5px;
     align-items: center;
     border-radius: 8px;
 }
@@ -198,6 +195,16 @@ th {
     margin-right: 15px;
 }
 
+.form{
+    display: block;
+}
+
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
 * {
     margin: 0;
     padding: 0;
@@ -222,16 +229,6 @@ button{
     margin: 60px auto
 }
 
-.input-box input, textarea, select {
-    width: 100%;
-    padding: 0.8rem 0.5rem;
-    border-radius: 5px;
-    margin-bottom: 3%;
-    margin-top: 1%;
-    box-shadow: 2px 2px 12px #0000001c;
-    outline-color: #2F9E41;
-    border: 1px solid #000;
-}
 
 .input-box input[type="checkbox"]{
     width: auto;
@@ -252,10 +249,9 @@ button{
 .btn {
     border: none;
     border-radius: 5px;
-    background: #2F9E41;
     color: rgb(255, 253, 253);
     text-align: center;
-    padding: 16px 35px
+    padding: 8px 21px !important;
 }
 
 .btn.red {

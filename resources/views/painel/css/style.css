@@ -152,10 +152,8 @@ div.box-usuario {
 
 .btn {
     display: flex;
-    background: #0A65FF;
-    color: #fff;
     border: none;
-    padding: 10px;
+    padding: 5px;
     align-items: center;
     border-radius: 8px;
 }
@@ -200,4 +198,11 @@ th {
 
 .form{
     display: block;
+}
+
+.login{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
 }

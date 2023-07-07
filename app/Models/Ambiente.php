@@ -14,4 +14,11 @@ class Ambiente extends Model
         'descricao',
         'id_usuario'
     ];
+
+
+    public function dispositivos()
+    {
+        return $this->hasMany(Dispositivo::class, 'id_ambiente');
+    }
+    
 }
