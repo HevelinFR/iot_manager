@@ -44,5 +44,8 @@ Route::delete('/ambiente/{id}', [DispositivosController::class, 'destroy'])->mid
 
 Route::get('/dispositivo/edit',  [DispositivosController::class, 'redir_registration'])->middleware('auth')->name('cadastro_dispositivos');
 
+Route::get('envio-email', function(){
+  
+});
 
 require __DIR__.'/auth.php';

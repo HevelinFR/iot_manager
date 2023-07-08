@@ -9,8 +9,10 @@ use App\Models\Comparacao;
 use App\Models\Dispositivo;
 use App\Models\Log;
 use App\Models\Regra;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class DashboardController extends Controller
 {
@@ -24,6 +26,8 @@ class DashboardController extends Controller
         $ambientes = Ambiente::with('dispositivos.amostras')->where('id_usuario', $userId)->get();
 
         $msg =  $this->verificarNovosDados();
+
+        // $msg = carbon::now();
 
         // Retorne a view com as amostras e seus dispositivos
         return view('painel.home', ['ambientes' => $ambientes, 'msg' => $msg]);
@@ -47,17 +51,17 @@ class DashboardController extends Controller
                 // Execute a função desejada com o novo dado
                 $msg =  $this->processarNovoDado($dado);
 
-                $log->mensagem = $msg;
-                $log->data_ultima_verificacao = now();
+                $log->mensagem = $msg.' Email enviado';
+                $log->data_ultima_verificacao = carbon::now();
                 $log->save();
 
-                return $novosDados;
+                return $msg.' Email enviado';
             }
         } else {
-            $log->data_ultima_verificacao = now();
+            $log->data_ultima_verificacao = carbon::now();
             $log->mensagem = 'Nenhum novo dado encontrado';
             $log->save();
-            return $novosDados.$ultimaVerificacao;
+            return 'Nenhum novo dado encontrado';
         }
     }
 
@@ -66,21 +70,50 @@ class DashboardController extends Controller
 
         $dispositivo = $this->getDispositivoById($dado->id_dispositivo);
 
-        $comparacao = $this->getComparacaoById($dispositivo->regras->id_comparacao);
+        $comparacao = $this->getComparacaoById($dispositivo->regra->id_comparacao);
+
+        $user = $this->getUserById($dispositivo->ambiente->id_usuario);
 
         $operador = $comparacao->operador;
         $amostra_valor = strval($dado->valor);
-        $rega_value =  strval($dispositivo->regras->valor);
+        $rega_value =  strval($dispositivo->regra->valor);
 
-        $expressao = "\$amostra_valor $operador \$rega_value";
-        $resultado = eval("return $expressao;");
+       $result = $this->fazerComparacao($operador, $amostra_valor, $rega_value);
 
-        if ($resultado) {
-            return "A expressão é verdadeira.";
+        if ($result) {
+            $data = [
+                "dispositivo_nome" => $dispositivo->nome,
+                "valor_recebido" => $amostra_valor,
+                "valor_esperado" => $rega_value,
+                "data_hora" => $dado->created_at,
+                "user_nome" => $user->name,
+                "user_email" => $user->email
+            ];
+            return Mail::send(new \App\Mail\newAlert($data));
         } else {
-            return "A epressão é falsa";
+            return "A epressão é falsa ".$amostra_valor.$operador.$rega_value;
         }
     }
+
+    function fazerComparacao($operador, $amostra, $valor) {
+        switch ($operador) {
+            case "==":
+                return $amostra == $valor;
+            case "!=":
+                return $amostra != $valor;
+            case ">":
+                return $amostra > $valor;
+            case ">=":
+                return $amostra >= $valor;
+            case "<":
+                return $amostra < $valor;
+            case "<=":
+                return $amostra <= $valor;
+            default:
+                return false;
+        }
+    }
+    
 
     function getDispositivoById($id)
     {
@@ -106,5 +139,12 @@ class DashboardController extends Controller
             // Se não houver registros, retorna a data e hora atual
             return Carbon::now();
         }
+    }
+    public function getUserById($id_user)
+    {
+        
+        if(User::find($id_user))
+            return User::find($id_user);
+        return "Usuário não encontrado, ERRO 404";
     }
 }
