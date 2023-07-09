@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{url(mix('painel/css/bootstrap.css'))}}">
+    <link rel="stylesheet" href="{{url(mix('painel/css/style.css'))}}">
+    <title>Cadastro</title>
+</head>
+<body>
+  <div class="login">
+    <div class="container">
+        <img class="mb-3" src="{{url('painel/img/logo.png')}}" alt="Logo">
+         <!-- Validation Errors -->
+         <x-auth-validation-errors class="mb-4" :errors="$errors" />
+        <form method="POST" action="{{ route('register') }}" class="col-lg-6">
+            @csrf
+            <h3 class="text">Cadastre-se</h3>
+            <div class="form-group py-3 m-0">
+                <label for="ususrio">Nome</label><br>
+                <input type="text" name="name" class="form-control">
+            </div>
+            <div class="form-group py-3 m-0">
+                <label for="ususrio">Email</label><br>
+                <input type="text" name="email" class="form-control">
+            </div>
+            <div class="form-group py-3">
+                <label for="senha">Senha</label><br>
+                <input type="password" name="password" class="form-control">
+            </div>
+            
+            <div class="flex items-center justify-end mt-4">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                   Já é registrado?
+                </a>
+                <button type="submit" class="btn btn-primary font-weight-bold px-9 py-4 my-3">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

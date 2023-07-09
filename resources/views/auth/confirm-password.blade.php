@@ -20,7 +20,7 @@
             <div>
                 <x-label for="password" :value="__('Password')" />
 
-                <x-input id="password" class="block mt-1 w-full"
+                <x-input id="password" class="form-control"
                                 type="password"
                                 name="password"
                                 required autocomplete="current-password" />

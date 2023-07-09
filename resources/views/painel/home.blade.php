@@ -7,7 +7,7 @@
 </script>
 
 <div class="container-fluid">
-    {{$msg}}
+    <!-- {{$msg}} -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
@@ -44,20 +44,22 @@
             $labels = [];
 
             foreach($dispositivo->amostras as $amostra){
-                $labels[] = $amostra->created_at;
+                $labels[] = \Carbon\Carbon::parse($amostra->created_at)->format('d/m/Y H:i:s');
             }
 
             $data = [];
 
             foreach($dispositivo->amostras as $amostra){
-                $data[] = strval($amostra->value);
+                $data[] = strval($amostra->valor);
             }
 
         @endphp
 
+       
         <script>
             const ctx<?=$dispositivo->id?> = document.getElementById('chart-{{ $dispositivo->id }}');
 
+            console.log(<?=json_encode($data)?>)
             new Chart(ctx<?=$dispositivo->id?>, {
                 type: type['{{$idDispositivo}}'],
                 data: {

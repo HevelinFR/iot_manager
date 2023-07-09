@@ -21,7 +21,7 @@
             <hr>
 
             <ul class="nav nav-pills flex-column mb-auto">
-                <li class="nav-item"><a class="nav-link active" href="/home"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link link-dark" href="/home"><i class="fas fa-fw fa-tachometer-alt"></i> Dashboard</a></li>
                 <li class="nav-item"><a class="nav-link link-dark" href="/ambientes"><i class="fas fa-city"></i> Ambientes</a></li>
                 <li class="nav-item"><a class="nav-link link-dark" href="/dispositivos"><i class="fas fa-laptop-house"></i> Dispositivos</a></li>
             </ul>
@@ -70,9 +70,19 @@
 
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script>
-        // setTimeout(() => {
-        //     document.getElementById("alert").style.display = "none";
-        // }, 2000); //depois de 3 segundos
+        setTimeout(() => {
+            document.getElementById("alert").style.display = "none";
+        }, 2000); //depois de 3 segundos
+
+
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('.nav-link');
+        const menuLenght = menuItem.length
+        for (let i = 0; i < menuLenght; i++) {
+            if (menuItem[i].href === currentLocation) {
+                menuItem[i].className = "nav-link active"
+            }
+        }
     </script>
 </body>
 

@@ -84,8 +84,9 @@ class DashboardController extends Controller
             $data = [
                 "dispositivo_nome" => $dispositivo->nome,
                 "valor_recebido" => $amostra_valor,
+                "comparacao" => $comparacao->descricao,
                 "valor_esperado" => $rega_value,
-                "data_hora" => $dado->created_at,
+                "data_hora" => \Carbon\Carbon::parse($dado->created_at)->format('d/m/Y H:i:s'),
                 "user_nome" => $user->name,
                 "user_email" => $user->email
             ];

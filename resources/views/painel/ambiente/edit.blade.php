@@ -16,25 +16,26 @@
         @if(isset($ambiente))
         @method('PUT')
         @endif
-        <h1>{{ isset($ambiente) ? 'Editar Ambiente' : 'Criar Ambiente' }}</h1>
+        <h1 class="h4 text-gray-900 mb-4">{{ isset($ambiente) ? 'Editar Ambiente' : 'Criar Ambiente' }}</h1>
         <div class="input-grup">
-            <div class="input-box">
+            <div class="form-group row">
                 <label for="nome">Nome</label><br>
-                <input id="nome" name="nome" type="text" placeholder="Nome" required value="{{ isset($ambiente) ? $ambiente->nome : '' }}">
+                <input id="nome" name="nome" class="form-control mb-4" type="text" placeholder="Nome" required value="{{ isset($ambiente) ? $ambiente->nome : '' }}">
 
                 <label for="descricao">Descrição</label><br>
-                <textarea name="descricao" id="descricao" required>{{ isset($ambiente) ? $ambiente->descricao : '' }}</textarea>
+                <textarea name="descricao" class="form-control" id="descricao" required>{{ isset($ambiente) ? $ambiente->descricao : '' }}</textarea>
             </div>
         </div>
 
         <div class="button flex-container">
             <div>
-                <button type="submit" class="btn">Salvar</button>
+                <button type="submit" class="btn btn-primary btn-user btn-block">Salvar</button>
             </div>
             <div>
                 <a href="/ambiente" class="btn red">Cancelar</a>
             </div>
         </div>
+    </form>
 </div>
-</form>
+
 @endsection

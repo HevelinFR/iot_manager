@@ -26,10 +26,7 @@
                 <label for="descricao">Descrição</label><br>
                 <textarea class="form-control" name="descricao" id="descricao" required>{{ isset($dispositivo) ? $dispositivo->descricao : '' }}</textarea>
             </div>
-        </div>
-
-        <div class="form-group row">
-            <div class="col-lg-4">
+            <div class="col-lg-12">
                 <label for="ambiente">Ambiente</label><br>
                 <select name="id_ambiente" id="id_ambiente" class="form-control">
                     <option>Selecione o ambiente</option>
@@ -38,7 +35,11 @@
                     @endforeach
                 </select>
             </div>
-            <div class="col-lg-4">
+        </div>
+
+        <div class="form-group row">
+
+            <div class="col-lg-6">
                 <label for="comparacao">comparacao</label><br>
                 <select name="id_comparacao" id="comparacao" class="form-control">
                     <option>Selecione a comparacao</option>
@@ -48,7 +49,7 @@
                 </select>
             </div>
 
-            <div class="col-lg-4">
+            <div class="col-lg-6">
                 <label for="valor">Valor</label><br>
                 <input class="form-control" id="valor" name="valor_comparacao" type="text" placeholder="Valor" required value="{{ isset($dispositivo) ? $dispositivo->regra->valor : '' }}">
             </div>
